@@ -184,12 +184,32 @@
       overflow: hidden;
     }
 
+
     /* RESPONSIVO */
     @media (max-width: 900px) {
+
       nav ul,
       .cta {
         display: none;
       }
+
+      @media (max-width: 900px) {
+        .cta {
+          display: none;
+        }
+      }
+
+      @media (max-width: 900px) {
+
+        /* Faz a imagem da campanha aparecer no mobile */
+        .hero-image {
+          height: 45vh;
+          min-height: 320px;
+          width: 100%;
+        }
+
+      }
+
 
       .menu-toggle {
         display: block;
@@ -265,4 +285,5 @@
   </script>
 
 </body>
+
 </html>
