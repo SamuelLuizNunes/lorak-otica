@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <title>Ótica Lorak | Sofisticação em Cada Olhar</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Montserrat:wght@300;400;600&display=swap"
+    rel="stylesheet">
 
   <style>
     :root {
@@ -22,20 +25,21 @@
       box-sizing: border-box;
     }
 
-    html, body {
+    html,
+    body {
       height: 100%;
-      overflow: hidden;
       font-family: 'Montserrat', sans-serif;
       background: #fff;
       color: #222;
     }
+
 
     /* NAVBAR */
     header {
       position: fixed;
       top: 0;
       width: 100%;
-      background: rgba(255,255,255,0.97);
+      background: rgba(255, 255, 255, 0.97);
       border-bottom: 1px solid #eee;
       z-index: 1000;
     }
@@ -55,8 +59,9 @@
     }
 
     .logo img {
-      height: 60px; /* logo maior, mais presença */
-    } 
+      height: 60px;
+      /* logo maior, mais presença */
+    }
 
 
     nav ul {
@@ -140,12 +145,10 @@
 
     .hero-image {
       background:
-        linear-gradient(
-          to left,
-          rgba(90,26,38,0.9),
-          rgba(90,26,38,0.7),
-          rgba(15,15,15,0.4)
-        ),
+        linear-gradient(to left,
+          rgba(90, 26, 38, 0.9),
+          rgba(90, 26, 38, 0.7),
+          rgba(15, 15, 15, 0.4)),
         url("campanha-principal.jpg") center/cover no-repeat;
     }
 
@@ -165,27 +168,57 @@
     .footer-content {
       font-size: 12px;
       letter-spacing: 1px;
-      color: rgba(255,255,255,0.6);
+      color: rgba(255, 255, 255, 0.6);
       display: flex;
       gap: 10px;
     }
 
+    .menu-toggle {
+      display: none;
+      font-size: 26px;
+      cursor: pointer;
+    }
+
     /* MOBILE */
     @media (max-width: 900px) {
+
+      .menu-toggle {
+        display: block;
+      }
+
       nav ul {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: #fff;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        padding: 20px 0;
         display: none;
+        border-bottom: 1px solid #eee;
+      }
+
+      nav ul.active {
+        display: flex;
       }
 
       .hero {
+        height: auto;
         grid-template-columns: 1fr;
       }
 
       .hero-text {
-        padding: 60px 30px;
+        padding: 70px 30px;
       }
 
       .hero-text h1 {
-        font-size: 40px;
+        font-size: 38px;
+      }
+
+      .footer {
+        position: relative;
       }
     }
   </style>
@@ -193,43 +226,53 @@
 
 <body>
 
-<header>
-  <div class="navbar">
-    <div class="logo">
-      <img src="logo-lorak.png" alt="Ótica Lorak">
+  <header>
+    <div class="navbar">
+      <div class="logo">
+        <img src="logo-lorak.png" alt="Ótica Lorak">
+      </div>
+
+      <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
+      <nav>
+        <ul>
+          <li><a href="#">Início</a></li>
+          <li><a href="#">Catálogo</a></li>
+          <li><a href="#">Campanhas</a></li>
+          <li><a href="#">Sobre Nós</a></li>
+        </ul>
+      </nav>
+
+      <a href="https://wa.me/5511932407244" target="_blank" class="cta">
+        Falar no WhatsApp
+      </a>
     </div>
+  </header>
 
-    <nav>
-      <ul>
-        <li><a href="#">Início</a></li>
-        <li><a href="#">Catálogo</a></li>
-        <li><a href="#">Campanhas</a></li>
-        <li><a href="#">Sobre Nós</a></li>
-      </ul>
-    </nav>
+  <section class="hero">
+    <div class="hero-text">
+      <h1>Sofisticação que Valoriza Seu Olhar</h1>
+      <p>Design exclusivo, lentes de alta precisão e atendimento premium para quem exige mais.</p>
+      <a href="https://wa.me/5511932407244" target="_blank">Agendar Exame</a>
+    </div>
+    <div class="hero-image"></div>
+  </section>
 
-    <a href="https://wa.me/5511932407244" target="_blank" class="cta">
-      Falar no WhatsApp
-    </a>
-  </div>
-</header>
+  <footer class="footer">
+    <div class="footer-content">
+      <span>© 2026 Ótica Lorak</span>
+      <span>•</span>
+      <span>Todos os direitos reservados</span>
+    </div>
+  </footer>
 
-<section class="hero">
-  <div class="hero-text">
-    <h1>Sofisticação que Valoriza Seu Olhar</h1>
-    <p>Design exclusivo, lentes de alta precisão e atendimento premium para quem exige mais.</p>
-    <a href="https://wa.me/5511932407244" target="_blank">Agendar Exame</a>
-  </div>
-  <div class="hero-image"></div>
-</section>
 
-<footer class="footer">
-  <div class="footer-content">
-    <span>© 2026 Ótica Lorak</span>
-    <span>•</span>
-    <span>Todos os direitos reservados</span>
-  </div>
-</footer>
+  <script>
+    function toggleMenu() {
+      document.querySelector("nav ul").classList.toggle("active");
+    }
+  </script>
 
 </body>
+
 </html>
