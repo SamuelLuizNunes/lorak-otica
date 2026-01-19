@@ -221,6 +221,29 @@
         position: relative;
       }
     }
+
+    .mobile-menu {
+      position: fixed;
+      top: 70px;
+      /* altura do header */
+      left: 0;
+      width: 100%;
+      height: calc(100vh - 70px);
+      background: #fff;
+      z-index: 9999;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .mobile-menu.active {
+      display: flex;
+    }
+
+    body.menu-open {
+      overflow: hidden;
+    }
   </style>
 </head>
 
@@ -271,6 +294,15 @@
     function toggleMenu() {
       document.querySelector("nav ul").classList.toggle("active");
     }
+
+    const menuBtn = document.querySelector('.menu-toggle');
+    const mobileMenu = document.querySelector('.mobile-menu');
+
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('active');
+      document.body.classList.toggle('menu-open');
+    });
+
   </script>
 
 </body>
