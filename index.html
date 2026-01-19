@@ -25,14 +25,11 @@
       box-sizing: border-box;
     }
 
-    html,
     body {
-      height: 100%;
       font-family: 'Montserrat', sans-serif;
       background: #fff;
       color: #222;
     }
-
 
     /* NAVBAR */
     header {
@@ -53,16 +50,9 @@
       justify-content: space-between;
     }
 
-    .logo {
-      display: flex;
-      align-items: center;
-    }
-
     .logo img {
       height: 60px;
-      /* logo maior, mais presença */
     }
-
 
     nav ul {
       display: flex;
@@ -94,12 +84,18 @@
       font-weight: 600;
     }
 
+    .menu-toggle {
+      display: none;
+      font-size: 28px;
+      cursor: pointer;
+    }
+
     /* HERO */
     .hero {
-      height: calc(100vh - 90px - 46px);
+      height: 100vh;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      margin-top: 90px;
+      margin-top: 96px;
     }
 
     .hero-text {
@@ -114,7 +110,6 @@
     .hero-text h1 {
       font-family: 'Playfair Display', serif;
       font-size: 58px;
-      line-height: 1.1;
       margin-bottom: 28px;
     }
 
@@ -126,86 +121,81 @@
     }
 
     .hero-text a {
-      align-self: flex-start;
-      background: transparent;
+      border: 1px solid var(--dourado);
       color: var(--dourado);
       padding: 14px 34px;
       border-radius: 40px;
-      border: 1px solid var(--dourado);
       text-decoration: none;
       font-weight: 600;
-      letter-spacing: 1px;
       transition: 0.3s;
+      width: fit-content;
     }
 
     .hero-text a:hover {
       background: var(--dourado);
-      color: #1a1a1a;
+      color: #111;
     }
 
     .hero-image {
       background:
         linear-gradient(to left,
           rgba(90, 26, 38, 0.9),
-          rgba(90, 26, 38, 0.7),
           rgba(15, 15, 15, 0.4)),
         url("campanha-principal.jpg") center/cover no-repeat;
     }
 
     /* FOOTER */
-    .footer {
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-      height: 46px;
+    footer {
       background: #0f0f0f;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 900;
-    }
-
-    .footer-content {
-      font-size: 12px;
-      letter-spacing: 1px;
       color: rgba(255, 255, 255, 0.6);
-      display: flex;
-      gap: 10px;
+      text-align: center;
+      padding: 14px;
+      font-size: 12px;
     }
 
-    .menu-toggle {
+    /* MOBILE MENU FULLSCREEN */
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background: #fff;
       display: none;
-      font-size: 26px;
-      cursor: pointer;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 28px;
+      z-index: 2000;
     }
 
-    /* MOBILE */
+    .mobile-menu a {
+      font-size: 22px;
+      text-decoration: none;
+      color: #1f1f1f;
+      letter-spacing: 2px;
+    }
+
+    .mobile-menu.active {
+      display: flex;
+    }
+
+    body.menu-open {
+      overflow: hidden;
+    }
+
+    /* RESPONSIVO */
     @media (max-width: 900px) {
+      nav ul,
+      .cta {
+        display: none;
+      }
 
       .menu-toggle {
         display: block;
       }
 
-      nav ul {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background: #fff;
-        flex-direction: column;
-        align-items: center;
-        gap: 20px;
-        padding: 20px 0;
-        display: none;
-        border-bottom: 1px solid #eee;
-      }
-
-      nav ul.active {
-        display: flex;
-      }
-
       .hero {
-        height: auto;
         grid-template-columns: 1fr;
       }
 
@@ -216,33 +206,6 @@
       .hero-text h1 {
         font-size: 38px;
       }
-
-      .footer {
-        position: relative;
-      }
-    }
-
-    .mobile-menu {
-      position: fixed;
-      top: 70px;
-      /* altura do header */
-      left: 0;
-      width: 100%;
-      height: calc(100vh - 70px);
-      background: #fff;
-      z-index: 9999;
-      display: none;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .mobile-menu.active {
-      display: flex;
-    }
-
-    body.menu-open {
-      overflow: hidden;
     }
   </style>
 </head>
@@ -254,8 +217,6 @@
       <div class="logo">
         <img src="logo-lorak.png" alt="Ótica Lorak">
       </div>
-
-      <div class="menu-toggle" onclick="toggleMenu()">☰</div>
 
       <nav>
         <ul>
@@ -269,8 +230,19 @@
       <a href="https://wa.me/5511932407244" target="_blank" class="cta">
         Falar no WhatsApp
       </a>
+
+      <div class="menu-toggle" onclick="toggleMenu()">☰</div>
     </div>
   </header>
+
+  <!-- MENU MOBILE -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#">Início</a>
+    <a href="#">Catálogo</a>
+    <a href="#">Campanhas</a>
+    <a href="#">Sobre Nós</a>
+    <a href="https://wa.me/5511932407244" target="_blank">WhatsApp</a>
+  </div>
 
   <section class="hero">
     <div class="hero-text">
@@ -281,30 +253,16 @@
     <div class="hero-image"></div>
   </section>
 
-  <footer class="footer">
-    <div class="footer-content">
-      <span>© 2026 Ótica Lorak</span>
-      <span>•</span>
-      <span>Todos os direitos reservados</span>
-    </div>
+  <footer>
+    © 2026 Ótica Lorak • Todos os direitos reservados
   </footer>
-
 
   <script>
     function toggleMenu() {
-      document.querySelector("nav ul").classList.toggle("active");
+      document.getElementById("mobileMenu").classList.toggle("active");
+      document.body.classList.toggle("menu-open");
     }
-
-    const menuBtn = document.querySelector('.menu-toggle');
-    const mobileMenu = document.querySelector('.mobile-menu');
-
-    menuBtn.addEventListener('click', () => {
-      mobileMenu.classList.toggle('active');
-      document.body.classList.toggle('menu-open');
-    });
-
   </script>
 
 </body>
-
 </html>
